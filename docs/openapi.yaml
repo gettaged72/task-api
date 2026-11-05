@@ -18,6 +18,13 @@ paths:
       summary: List all tasks
       tags:
         - Tasks
+      parameters:
+        - name: completed
+          in: query
+          required: false
+          description: Use true for completed tasks or false for incomplete tasks. Omit to return all tasks.
+          schema:
+            type: boolean
       responses:
         '200':
           description: OK
@@ -27,6 +34,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Task'
+        '400':
+          description: completed must be true or false
     post:
       summary: Create a new task
       tags:
